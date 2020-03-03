@@ -5,8 +5,7 @@ pipeline {
       steps {
         sh '''pwd
 ls -lh'''
-        sh '''tidy -q -e *.html
-ls -lh'''
+        sh '''tidy -q -e *.html'''
       }
     }
 
