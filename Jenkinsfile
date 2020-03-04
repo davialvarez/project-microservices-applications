@@ -15,5 +15,12 @@ ls -lh'''
       }
     }
 
+    stage('Build image') {
+      steps {
+        sh '''docker build -t dalvaz/swaggerapi .
+docker image ls'''
+      }
+    }
+
   }
 }
