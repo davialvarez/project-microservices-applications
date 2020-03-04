@@ -9,17 +9,22 @@ ls -lh'''
       }
     }
 
+    stage('Lint Python app') {
+      steps {
+        script{
+            withPythonEnv('lint/bin'){
+                sh("python --version")
+            }
+        }
+      }
+    }
+
     stage('Lint Dockerfile') {
       steps {
         sh 'hadolint Dockerfile'
       }
     }
 
-    stage('Lint Python app') {
-      steps {
-        pysh 'pylint'
-      }
-    }
 
   }
 }
