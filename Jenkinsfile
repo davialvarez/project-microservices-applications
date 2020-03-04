@@ -9,5 +9,11 @@ ls -lh'''
       }
     }
 
+    stage('Lint Dockerfile') {
+      steps {
+        sh 'hadolint Dockerfile'
+      }
+    }
+
   }
 }
