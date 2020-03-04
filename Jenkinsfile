@@ -15,5 +15,11 @@ ls -lh'''
       }
     }
 
+    stage('Lint Python app') {
+      steps {
+        sh 'source ~/.lint/bin/activate'
+      }
+    }
+
   }
 }
