@@ -17,7 +17,8 @@ ls -lh'''
 
     stage('Lint Python app') {
       steps {
-        sh 'source ~/.lint/bin/activate'
+        sh '''python3 -m venv .lint
+source .lint/bin/activate'''
       }
     }
 
