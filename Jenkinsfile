@@ -9,12 +9,6 @@ ls -lh'''
       }
     }
 
-    stage('Lint Python app') {
-      steps {
-        sh './scripts/lint.sh'
-      }
-    }
-
     stage('Lint Dockerfile') {
       steps {
         sh 'hadolint Dockerfile'
