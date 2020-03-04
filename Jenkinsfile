@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''pwd
 ls -lh'''
-        sh '''tidy -q -e *.html'''
+        sh 'tidy -q -e flask_app/index.html'
       }
     }
 
