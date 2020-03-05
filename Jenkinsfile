@@ -22,5 +22,13 @@ docker image ls'''
       }
     }
 
+    stage('Login to dockerhub') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpwd')]) {
+          sh 'echo docker login -u ${dockerhubuser} -p ${dockerhubpwd}'
+        }
+      }
+    }
+
   }
 }
