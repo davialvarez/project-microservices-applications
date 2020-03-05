@@ -22,11 +22,14 @@ docker image ls'''
       }
     }
 
-    stage('Login to dockerhub') {
+    stage('Push Docker Hub') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpwd')]) {
-          sh 'docker login -u ${dockerhubuser} -p ${dockerhubpwd}'
+        withCredentials(bindings: [usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'dockerhubuser', passwordVariable: 'dockerhubpwd')]) {
+          sh '''docker login -u ${dockerhubuser} -p ${dockerhubpwd}
+docker tag dalvaz/swaggerapi dalvaz/swaggerapi:1.0
+docker push dalvaz/swaggerapi:1.0'''
         }
+
       }
     }
 
