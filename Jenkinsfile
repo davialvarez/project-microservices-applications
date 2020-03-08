@@ -39,6 +39,9 @@ docker push dalvaz/swaggerapi:1.0'''
           sh 'echo "Actualizando Kubeconfig"'
           sh 'aws eks update-kubeconfig --name Cluster-Capstone-eks'
 	  sh 'kubectl get node'
+          sh 'kubectl apply -f deployment/deployment.yaml'
+          sh 'kubectl apply -f deployment/service.yaml'
+          sh 'kubectl get all -o wide'
         }
       }
     }
