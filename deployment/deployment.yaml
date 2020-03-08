@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swaggerapi
+  labels:
+    app: swaggerapi
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: swaggerapi
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: swaggerapi
+    spec:
+      containers:
+      - image: dalvaz/swaggerapi:1.0
+        imagePullPolicy: Always
+        name: swaggerapi
+        ports:
+        - containerPort: 5001
+          protocol: TCP
