@@ -28,7 +28,7 @@ In this project the following skills apply:
 - aws-cli
 - kubectl
 
-Linux:
+#### Linux installation:
 
 1. Clone repository
 
@@ -52,7 +52,7 @@ kubectl get all -o wide
 
 3. Add nodes to EKS
 
-Before add **rolearn** from _IAM console_ to **aws-auth-cm.yaml**. Go to section IAM -> Roles -> Iam-Capstone-EksWorkerRole-???????????? and copy **"Role ARN"**.
+Before add **rolearn** from _IAM console_ to **aws-auth-cm.yaml**. Go to section IAM -> Roles -> Iam-Capstone-EksWorkerRole-XXXXXXXXXXXX and copy **"Role ARN"**.
 
 ```yml
 apiVersion: v1
@@ -90,6 +90,44 @@ kubectl apply -f deployment/deployment.yaml
 ```sh
 kubectl apply -f deployment/service.yaml
 ```
+
+## Screenshot Project Specification (Rubric)
+
+### Set Up Pipeline
+
+1. Create Github repository with project code
+
+![](screenshots/01_create_github_repo.png)
+
+2. Use image repository to store Docker images
+
+![](screenshots/02_docker_hub.png)
+
+### Build Docker Container
+
+1. Execute linting step in code pipeline 
+
+![](screenshots/03_lint_html.png)
+
+![](screenshots/03_lint_dockerfile.png)
+
+2. Build a Docker container in a pipeline
+
+![](screenshots/04_build_image.png)
+
+### Succesful Deployment
+
+1. The Docker container is deployed to a Kubernetes cluster
+
+![](screenshots/05_deployment_app.png)
+
+2. Use Rolling Deployment successfully
+
+![](screenshots/05_deploy_succesful.png)
+
+![](screenshots/05_load_balancer_eks.png)
+
+![](screenshots/05_dns_app.png)
 
 ## Meta
 
