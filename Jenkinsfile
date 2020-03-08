@@ -33,5 +33,16 @@ docker push dalvaz/swaggerapi:1.0'''
       }
     }
 
+    stage('Deploy to Kubernetes')  {
+      steps {
+        withAWS(region: 'us-west-2', credentials: 'aws-credential') {
+          sh 'echo "Actualizando Kubeconfig"'
+          sh 'aws eks update-kubeconfig --name Cluster-Capstone-eks'
+	  sh 'kubectl get node'
+        }
+      }
+    }
+
+
   }
 }
