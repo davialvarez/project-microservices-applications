@@ -16,7 +16,7 @@ In this project the following skills apply:
 - Building Kubernetes clusters
 - Building Docker containers in pipelines
 
-## Installation
+## Get Started
 
 ### Prerequisites
 
@@ -30,65 +30,76 @@ In this project the following skills apply:
 
 Linux:
 
-1. First create Kubernetes EKS 
+1. Clone repository
+
 ```sh
-cd cluster-kubernetes
-./create.sh Iam-Capstone iam.yml
-./create.sh Vpc-Capstone vpc.yml
-./create.sh Eks1-Capstone eks1cluster.yml
+git clone https://github.com/davialvarez/udacity-microservices-capstone-project.git
 ```
 
-2. Update ARN role
+1. First create Kubernetes EKS on Amazon Web Service
 ```sh
+./create.sh Iam-Capstone cluster-kubernetes/iam.yml
+./create.sh Vpc-Capstone cluster-kubernetes/vpc.yml
+./create.sh Eks1-Capstone cluster-kubernetes/eks1cluster.yml
 ```
 
-3.
+2. Update kubeconfig 
+
 ```sh
 aws eks update-kubeconfig --name Cluster-Capstone-eks
-kubectl apply -f aws-auth-cm.yaml
+kubectl get all -o wide
 ```
 
-## Usage example
+3. Add nodes to EKS
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+Before add **rolearn** from _IAM console_ to **aws-auth-cm.yaml**. Go to section IAM -> Roles -> Iam-Capstone-EksWorkerRole-???????????? and copy **"Role ARN"**.
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+```yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: [add ARN here and the save file]
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+```
 
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+Apply config.
 
 ```sh
-make install
-npm test
+kubectl apply -f cluster-kubernetes/aws-auth-cm.yaml
 ```
 
-## Release History
+## Deployment App
 
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
-* 0.0.1
-    * Work in progress
+This app enabled a rolling update deployment. 
+
+1. Deploy image, replicas and rollingUpdate
+
+```sh
+kubectl apply -f deployment/deployment.yaml
+```
+
+2. Create service
+
+```sh
+kubectl apply -f deployment/service.yaml
+```
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+David Alvarez – davi.alvarez@protonmail.com
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/davialvarez/udacity-microservices-capstone-project](https://github.com/davialvarez/udacity-microservices-capstone-project)
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/davialvarez/udacity-microservices-capstone-project/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
