@@ -20,7 +20,7 @@ In this project the following skills apply:
 
 ### Prerequisites
 
-- Docker
+- Docker ([installation](https://docs.docker.com/install/))
 - Kubernetes (AWS EKS)
 - CloudFormation
 - Jenkins
