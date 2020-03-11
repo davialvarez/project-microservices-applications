@@ -21,12 +21,11 @@ In this project the following skills apply:
 ### Prerequisites
 
 - Docker ([installation](https://docs.docker.com/install/))
-- Kubernetes (AWS EKS)
 - CloudFormation
-- Jenkins
+- Jenkins ([installation](https://jenkins.io/doc/book/installing/#linux))
 - Python
-- aws-cli
-- kubectl
+- aws-cli ([installation](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html))
+- kubectl ([installation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux))
 
 #### Linux installation:
 
