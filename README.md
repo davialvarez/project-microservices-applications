@@ -5,6 +5,16 @@ CI/CD pipeline for micro services applications (Swaggerapi) with rolling deploym
 
 ![](header.png)
 
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [Features](#features)
+* [Get Started](#get-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Deployment App](#deployment-app)
+
+
 ## Features
 
 In this project the following skills apply:
@@ -27,7 +37,7 @@ In this project the following skills apply:
 - aws-cli ([installation](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html))
 - kubectl ([installation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux))
 
-#### Linux installation:
+#### Installation:
 
 1. Clone repository
 
